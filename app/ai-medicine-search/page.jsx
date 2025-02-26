@@ -20,11 +20,12 @@ const AiSearch = () => {
     const [loading, setLoading] = useState(false);
     const [Result, setResult] = useState([]);
     const [language, setLanguage] = useState("English");
+    const [currentCamera, setCurrentCamera] = useState(null);
 
-    const startCamera = async () => {
+    const startCamera = async (deviceId) => {
         try {
             const mediaStream = await navigator.mediaDevices.getUserMedia({
-                video: true,
+                video: { deviceId: deviceId ? { exact: deviceId } : undefined },
             });
             setStream(mediaStream);
             if (videoRef.current) {
@@ -48,9 +49,17 @@ const AiSearch = () => {
             stream.getTracks().forEach((track) => track.stop());
             setStream(null);
         } else {
-            startCamera();
+            startCamera(currentCamera?.deviceId);
         }
         setIsCameraOn(!isCameraOn);
+    };
+
+    const switchCamera = async () => {
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const videoDevices = devices.filter(device => device.kind === 'videoinput');
+        const nextCamera = videoDevices.find(device => device.deviceId !== currentCamera?.deviceId) || videoDevices[0];
+        setCurrentCamera(nextCamera);
+        startCamera(nextCamera.deviceId);
     };
 
     const captureImage = async () => {
@@ -187,11 +196,17 @@ const AiSearch = () => {
                             </Button>
                         </div>
 
+                        <div className="absolute top-2 right-2">
+                            <Button className="rounded-full" size="sm" onClick={switchCamera}>
+                                Switch Camera
+                            </Button>
+                        </div>
+
                         {isCameraOn && (
-                            <div className="absolute top-2 right-2">
-                                <button className="rounded-full bg-green-500 px-4 py-2 text-white" onClick={captureImage}>
+                            <div className="absolute bottom-2 right-2">
+                                <Button className="rounded-full" size="sm" onClick={captureImage}>
                                     Capture & Extract Text
-                                </button>
+                                </Button>
                             </div>
                         )}
 
