@@ -219,7 +219,7 @@ const AiSearch = () => {
                     </div>
                     <Button className="w-full mt-4">Search</Button>
                 </div>
-                <div className="lg:w-2/3 p-6 bg-white rounded-lg shadow-md">
+                <div className="lg:w-2/3 p-6 bg-white shadow-md">
                     {loading ? (
                         <div className="flex items-center justify-center h-full">
                             <p className="text-lg flex gap-2 items-center"><Loader className="animate-spin" /> Loading...</p>

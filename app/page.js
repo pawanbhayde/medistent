@@ -7,8 +7,8 @@ const Page = () => {
   return (
     <div>
       <Navbar />
-      <section className="py-10">
-        <div className="container flex flex-col items-center text-center">
+      <section className="py-10 center">
+        <div className=" flex flex-col items-center text-center">
           <div className="bg-primary border-2 p-4 rounded-3xl mb-8">
             <GraduationCap className="h-12 w-12" />
           </div>
@@ -31,10 +31,9 @@ const Page = () => {
                 <div className="bg-background w-12 h-12 rounded-lg flex items-center justify-center mb-6">
                   <Book className="h-6 w-6 text-primary-foreground" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">AI Medicine Search</h3>
+                <h3 className="text-xl font-bold mb-3">Analyze Lab Report</h3>
                 <p className="text-muted-foreground">
-                  Search for medical topics and get the best resources
-                  available.
+                  Get a detailed analysis of your lab reports in seconds.
                 </p>
               </div>
             </Link>
