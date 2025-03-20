@@ -1,6 +1,13 @@
 import Link from "next/link";
 import Navbar from "./_components/navbar";
-import { Book, Clock, GraduationCap } from "lucide-react";
+import {
+  Book,
+  Clock,
+  FlaskConical,
+  GraduationCap,
+  PackageSearch,
+  Stethoscope,
+} from "lucide-react";
 
 const Page = () => {
   return (
@@ -13,10 +20,11 @@ const Page = () => {
           </div>
           <h1 className="text-5xl font-bold mb-4">
             Welcome to{" "}
-            <span className="text-primary-foreground">Mind Mentor</span>
+            <span className="text-primary-foreground">Medistent</span>
           </h1>
           <p className="text-zinc-600 text-xl mb-8 max-w-2xl">
-            Your AI-powered study assistant for accelerated learning
+            Your AI-Powered Health Companion. Instant Medicine Search, Lab
+            Report Insights & Smart Diagnosis
           </p>
         </div>
       </section>
@@ -28,7 +36,7 @@ const Page = () => {
             <Link href={"/ai-medicine-search"}>
               <div className="bg-white p-8 rounded-xl border-2 border-zinc-900">
                 <div className="bg-background w-12 h-12 rounded-lg flex items-center justify-center mb-6">
-                  <Book className="h-6 w-6 text-primary-foreground" />
+                  <PackageSearch className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">AI Medicine Search</h3>
                 <p className="text-muted-foreground">
@@ -41,7 +49,7 @@ const Page = () => {
             <Link href={"/ai-lab-report-explainer"}>
               <div className="bg-white p-8 rounded-xl border-2 border-zinc-900">
                 <div className="bg-background w-12 h-12 rounded-lg flex items-center justify-center mb-6">
-                  <GraduationCap className="h-6 w-6 text-primary-foreground" />
+                  <FlaskConical className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">
                   AI Lab Report Explainer
@@ -56,7 +64,7 @@ const Page = () => {
             <Link href={"/ai-doctor"}>
               <div className="bg-white p-8 rounded-xl border-2 border-zinc-900">
                 <div className="bg-background w-12 h-12 rounded-lg flex items-center justify-center mb-6">
-                  <Clock className="h-6 w-6 text-primary-foreground" />
+                  <Stethoscope className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">AI Doctor</h3>
                 <p className="text-muted-foreground">

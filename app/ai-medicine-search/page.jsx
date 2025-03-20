@@ -1,5 +1,5 @@
 "use client";
-import { Book, Loader} from "lucide-react";
+import { Book, Cross, FileText, Loader } from "lucide-react";
 import Navbar from "../_components/navbar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -12,12 +12,14 @@ import { Separator } from "@/components/ui/separator";
 const AiSearch = () => {
     const [medName, setMedName] = useState("");
     const [loading, setLoading] = useState(false);
-    const [Result, setResult] = useState([]);
+    const [Result, setResult] = useState(null);
     const [language, setLanguage] = useState("English");
+    const [hasSearched, setHasSearched] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+        setHasSearched(true);
 
         try {
             const inputPrompt = `
@@ -65,9 +67,11 @@ const AiSearch = () => {
                 console.log("Result:", JSON.parse(mockJsonRes));
             } else {
                 console.error("Error:", res);
+                setResult(null);
             }
         } catch (error) {
             console.error("Error:", error);
+            setResult(null);
         } finally {
             setLoading(false);
         }
@@ -78,7 +82,7 @@ const AiSearch = () => {
     return (
         <div>
             <Navbar />
-            <div className="lg:px-16 flex flex-col lg:flex-row border-b">
+            <div className="lg:px-16 flex flex-col lg:flex-row border-b min-h-[90vh]">
                 <div className="lg:w-1/3 border-r p-4">
                     <div className="flex gap-4">
                         <div className="bg-white p-4 rounded-lg flex items-center justify-center mb-6">
@@ -110,6 +114,18 @@ const AiSearch = () => {
                         <div className="flex items-center justify-center h-full">
                             <p className="text-lg flex gap-2 items-center"><Loader className="animate-spin" /> Loading...</p>
                         </div>
+                    ) : !hasSearched ? (
+                        <div className="flex items-center flex-col justify-center h-full">
+                            <FileText className="h-16 w-16 mb-4 opacity-50" />
+                            <h3 className="text-xl font-medium mb-2">No Report Analyzed Yet</h3>
+                            <p className="text-lg text-gray-500">Not searched yet. Enter a medicine name and click Search.</p>
+                        </div>
+                    ) : Result === null || !Result[language] ? (
+                        <div className="flex items-center justify-center h-full">
+                            <Cross className="h-16 w-16 mb-4 opacity-50" />
+                            <h3 className="text-xl font-medium mb-2">No Report Analyzed Yet</h3>
+                            <p className="text-lg text-gray-500">No results found. Please try another search.</p>
+                        </div>
                     ) : (
                         <>
                             <div className="flex items-center justify-between mb-2">
@@ -119,7 +135,7 @@ const AiSearch = () => {
                                 </Button>
                             </div>
                             <div className="space-y-4">
-                                <Card   >
+                                <Card>
                                     <CardHeader>
                                         <CardTitle className="text-2xl font-bold">{Result[language]?.name ?? "N/A"}</CardTitle>
                                     </CardHeader>
