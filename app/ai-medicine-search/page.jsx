@@ -1,104 +1,25 @@
 "use client";
-import { Book, Eye, EyeOff, Loader, Loader2 } from "lucide-react";
+import { Book, Loader} from "lucide-react";
 import Navbar from "../_components/navbar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { chatSession } from "@/lib/GeminiAIModel";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import Tesseract from "tesseract.js";
 
 const AiSearch = () => {
-    const videoRef = useRef(null);
-    const canvasRef = useRef(null);
-    const [stream, setStream] = useState(null);
-    const [isCameraOn, setIsCameraOn] = useState(false);
-    const [extractedText, setExtractedText] = useState("");
     const [medName, setMedName] = useState("");
     const [loading, setLoading] = useState(false);
     const [Result, setResult] = useState([]);
     const [language, setLanguage] = useState("English");
-    const [currentCamera, setCurrentCamera] = useState(null);
-
-    const startCamera = async (deviceId) => {
-        try {
-            const mediaStream = await navigator.mediaDevices.getUserMedia({
-                video: { deviceId: deviceId ? { exact: deviceId } : undefined },
-            });
-            setStream(mediaStream);
-            if (videoRef.current) {
-                videoRef.current.srcObject = mediaStream;
-            }
-        } catch (error) {
-            console.error("Error accessing camera:", error);
-        }
-    };
-
-    useEffect(() => {
-        return () => {
-            if (stream) {
-                stream.getTracks().forEach((track) => track.stop());
-            }
-        };
-    }, [stream]);
-
-    const toggleCamera = () => {
-        if (isCameraOn) {
-            stream.getTracks().forEach((track) => track.stop());
-            setStream(null);
-        } else {
-            startCamera(currentCamera?.deviceId);
-        }
-        setIsCameraOn(!isCameraOn);
-    };
-
-    const switchCamera = async () => {
-        const devices = await navigator.mediaDevices.enumerateDevices();
-        const videoDevices = devices.filter(device => device.kind === 'videoinput');
-        const nextCamera = videoDevices.find(device => device.deviceId !== currentCamera?.deviceId) || videoDevices[0];
-        setCurrentCamera(nextCamera);
-        startCamera(nextCamera.deviceId);
-    };
-
-    const captureImage = async () => {
-        if (!videoRef.current || !canvasRef.current) return;
-
-        const canvas = canvasRef.current;
-        const video = videoRef.current;
-        const ctx = canvas.getContext("2d");
-
-        // Set canvas dimensions equal to video frame size
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-
-        // Draw the current video frame on canvas
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-        // Convert the canvas image to base64
-        const base64Image = canvas.toDataURL("image/png");
-
-        // Extract text using Tesseract.js
-        extractText(base64Image);
-    };
-
-    const extractText = async (imageBase64) => {
-        try {
-            const { data: { text } } = await Tesseract.recognize(imageBase64, "eng");
-            setExtractedText(text);
-        } catch (error) {
-            console.error("Error extracting text:", error);
-        }
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
 
         try {
-
-            // Construct input prompt for Gemini API
             const inputPrompt = `
             "Provide detailed information about the medicine ${medName} in JSON format with the following structure:
           
@@ -170,54 +91,19 @@ const AiSearch = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="space-y-2">
-                        <label htmlFor="">Medicine Name</label>
-                        <Input
-                            placeholder="Eg. Dolo 650"
-                            value={medName}
-                            onChange={(e) => setMedName(e.target.value)}
-                        />
-                    </div>
-                    <Button onClick={handleSubmit} className="w-full mt-4">
-                        {loading ? "Loading..." : "Search"}
-                    </Button>
-                    <div className="flex items-center gap-4 my-4">
-                        <div className="flex-1 border-b"></div>
-                        <div>or</div>
-                        <div className="flex-1 border-b"></div>
-                    </div>
-                    <div className="relative">
-                        <video ref={videoRef} autoPlay playsInline className="w-full rounded-lg border-2" />
-                        <canvas ref={canvasRef} style={{ display: "none" }} />
-
-                        <div className="absolute top-2 left-2">
-                            <Button className="rounded-full" size="sm" onClick={toggleCamera}>
-                                {isCameraOn ? "OFF" : "ON"}
-                            </Button>
+                    <form onSubmit={handleSubmit}>
+                        <div className="space-y-2">
+                            <label htmlFor="">Medicine Name</label>
+                            <Input
+                                placeholder="Eg. Dolo 650"
+                                value={medName}
+                                onChange={(e) => setMedName(e.target.value)}
+                            />
                         </div>
-
-                        <div className="absolute top-2 right-2">
-                            <Button className="rounded-full" size="sm" onClick={switchCamera}>
-                                Switch Camera
-                            </Button>
-                        </div>
-
-                        {isCameraOn && (
-                            <div className="absolute bottom-2 right-2">
-                                <Button className="rounded-full" size="sm" onClick={captureImage}>
-                                    Capture & Extract Text
-                                </Button>
-                            </div>
-                        )}
-
-                        {extractedText && (
-                            <div className="mt-4 p-2 border rounded">
-                                <h3>Extracted Text:</h3>
-                                <p>{extractedText}</p>
-                            </div>
-                        )}
-                    </div>
-                    <Button className="w-full mt-4">Search</Button>
+                        <Button className="w-full mt-4">
+                            {loading ? "Loading..." : "Search"}
+                        </Button>
+                    </form>
                 </div>
                 <div className="lg:w-2/3 p-6 bg-white shadow-md">
                     {loading ? (

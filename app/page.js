@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Navbar from "./_components/navbar";
 import { Book, Clock, GraduationCap } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const Page = () => {
   return (
@@ -31,32 +30,36 @@ const Page = () => {
                 <div className="bg-background w-12 h-12 rounded-lg flex items-center justify-center mb-6">
                   <Book className="h-6 w-6 text-primary-foreground" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Analyze Lab Report</h3>
+                <h3 className="text-xl font-bold mb-3">AI Medicine Search</h3>
                 <p className="text-muted-foreground">
-                  Get a detailed analysis of your lab reports in seconds.
+                  Get Details of any medicine with just a click.
                 </p>
               </div>
             </Link>
 
             {/* Feature 2 */}
-            <div className="bg-white p-8 rounded-xl border-2 border-zinc-900">
-              <div className="bg-background w-12 h-12 rounded-lg flex items-center justify-center mb-6">
-                <GraduationCap className="h-6 w-6 text-primary-foreground" />
+            <Link href={"/ai-lab-report-explainer"}>
+              <div className="bg-white p-8 rounded-xl border-2 border-zinc-900">
+                <div className="bg-background w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+                  <GraduationCap className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">
+                  AI Lab Report Explainer
+                </h3>
+                <p className="text-muted-foreground">
+                  Get detailed explanation of your lab reports
+                </p>
               </div>
-              <h3 className="text-xl font-bold mb-3">AI-Curated Resources</h3>
-              <p className="text-muted-foreground">
-                Access the best learning materials curated by our AI.
-              </p>
-            </div>
+            </Link>
 
             {/* Feature 3 */}
             <div className="bg-white p-8 rounded-xl border-2 border-zinc-900">
               <div className="bg-background w-12 h-12 rounded-lg flex items-center justify-center mb-6">
                 <Clock className="h-6 w-6 text-primary-foreground" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Time Management</h3>
+              <h3 className="text-xl font-bold mb-3">AI Doctor</h3>
               <p className="text-muted-foreground">
-                Manage your time effectively and stay on top of your studies.
+                Get instant diagnosis and treatment suggestions
               </p>
             </div>
           </div>
