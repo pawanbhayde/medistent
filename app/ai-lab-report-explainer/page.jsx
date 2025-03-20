@@ -189,10 +189,10 @@ const AiLabReport = () => {
                         </div>
                     </div>
 
-                    <Tabs defaultValue="paste">
+                    <Tabs defaultValue="upload">
                         <TabsList className="grid w-full grid-cols-2 mb-4 h-12">
-                            <TabsTrigger value="paste">Paste Text</TabsTrigger>
                             <TabsTrigger value="upload">Upload File</TabsTrigger>
+                            <TabsTrigger value="paste">Paste Text</TabsTrigger>
                         </TabsList>
 
                         <TabsContent value="paste">
