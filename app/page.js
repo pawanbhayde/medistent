@@ -53,15 +53,17 @@ const Page = () => {
             </Link>
 
             {/* Feature 3 */}
-            <div className="bg-white p-8 rounded-xl border-2 border-zinc-900">
-              <div className="bg-background w-12 h-12 rounded-lg flex items-center justify-center mb-6">
-                <Clock className="h-6 w-6 text-primary-foreground" />
+            <Link href={"/ai-doctor"}>
+              <div className="bg-white p-8 rounded-xl border-2 border-zinc-900">
+                <div className="bg-background w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+                  <Clock className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">AI Doctor</h3>
+                <p className="text-muted-foreground">
+                  Get instant diagnosis and treatment suggestions
+                </p>
               </div>
-              <h3 className="text-xl font-bold mb-3">AI Doctor</h3>
-              <p className="text-muted-foreground">
-                Get instant diagnosis and treatment suggestions
-              </p>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
