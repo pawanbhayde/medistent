@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Medistent ⚕️
 
-First, run the development server:
+**Aiding healthcare with AI.**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Medistent is a JavaScript-based project designed to assist in various healthcare-related tasks using AI. It leverages technologies like Next.js and Google's Gemini AI to provide intelligent solutions.
+
+## ✨ Features
+
+*   **AI-Powered Doctor:** Interact with an AI for preliminary medical advice and information.
+*   **AI Lab Report Explainer:** Get help understanding complex lab reports with AI-driven explanations.
+*   **AI Medicine Search:** Find information about medications quickly and efficiently using AI.
+*   **Modern UI:** Built with Radix UI and Tailwind CSS for a clean and responsive user experience.
+
+## 🚀 Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine.
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+*   **Node.js:** (Ideally the latest LTS version) - [https://nodejs.org/](https://nodejs.org/)
+*   **npm** or **yarn** or **pnpm** or **bun:** Choose your preferred package manager.
+
+### Installation
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/pawanbhayde/medistent.git
+    cd medistent
+    ```
+
+2.  **Install dependencies:**
+
+    Using npm:
+
+    ```bash
+    npm install
+    ```
+
+    Using yarn:
+
+    ```bash
+    yarn install
+    ```
+
+    Using pnpm:
+
+    ```bash
+    pnpm install
+    ```
+
+    Using bun:
+
+    ```bash
+    bun install
+    ```
+
+3.  **Run the development server:**
+
+    Using npm:
+
+    ```bash
+    npm run dev
+    ```
+
+    Using yarn:
+
+    ```bash
+    yarn dev
+    ```
+
+    Using pnpm:
+
+    ```bash
+    pnpm dev
+    ```
+
+    Using bun:
+
+    ```bash
+    bun dev
+    ```
+
+4.  **Open your browser and navigate to `http://localhost:3000`** to see the application running.
+
+## 🛠️ Technologies Used
+
+*   **Next.js:** React framework for building performant web applications.
+*   **React:** JavaScript library for building user interfaces.
+*   **Tailwind CSS:** Utility-first CSS framework for rapid UI development.
+*   **Radix UI:** Unstyled, accessible React components.
+*   **clsx:**  A tiny utility for constructing `className` strings conditionally.
+*   **tailwind-merge:** Utility to merge Tailwind CSS classes.
+*   **lucide-react:** Beautifully simple vector icons.
+*   **Google Gemini AI:**  For AI-powered features.
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how you can contribute to Medistent:
+
+1.  **Fork the repository.**
+2.  **Create a new branch** for your feature or bug fix.
+3.  **Make your changes** and commit them with clear, concise messages.
+4.  **Push your branch** to your forked repository.
+5.  **Submit a pull request** to the main repository.
+
+Please ensure your code adheres to the project's coding standards and includes appropriate tests.
+
+## 📝 License
+
+No license provided. All rights reserved.
+
+## 🔗 Links
+
+*   **Homepage:** [https://medistent.vercel.app](https://medistent.vercel.app)
+
+## 👨‍💻 Contributors
+
+*   [pawanbhayde](https://github.com/pawanbhayde)
+
+## ⭐️ Show your support
+
+Give a ⭐️ if this project helped you!
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
